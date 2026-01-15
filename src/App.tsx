@@ -17,10 +17,7 @@ import { useTranslation } from "react-i18next";
 import type { IRootState } from "./store";
 import { useUserStore } from "./store/user";
 import { ToastContainer } from "react-toastify";
-
 import { useForm } from "react-hook-form";
-import Loading from "./components/loading";
-
 interface FormData {
   fieldName: string;
 }
@@ -93,15 +90,6 @@ function App({ children }: PropsWithChildren) {
       setIsOpenAddData(false);
     }, 1000);
   };
-
-  // ✅ User mavjud bo'lmaganda Loading
-  if (!user) {
-    return (
-      <div className="w-full h-screen flex justify-center items-center">
-        <Loading />
-      </div>
-    );
-  }
 
   return (
     <>
