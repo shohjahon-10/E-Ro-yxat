@@ -37,8 +37,3 @@ export type TSelectUserOptioAsImage = TSelectOption & {
   value: number | string;
   label: string;
 };
-// photo: `${item?.fromUser?.domain}/${item?.fromUser?.avatar}`,
-// roles: item?.fromUser?.roles,
-// sub_roles: item?.fromUser?.sub_roles,
-// value: item.id,
-// label: getShortName(item?.fromUser?.fullname),

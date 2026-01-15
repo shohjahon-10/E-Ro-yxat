@@ -65,12 +65,6 @@ function App({ children }: PropsWithChildren) {
     );
   }, [dispatch, themeConfig]);
 
-  // ✅ isStationModalOpen faqat true bo'lganda modalni ko'rsatish
-  // if (isStationModalOpen) {
-  //   return ( ... )
-  // }
-  // Bu blokni commentga oling yoki o'chiring
-
   const closeStationModal = () => {
     setIsStationModalOpen(false);
     logOut();
