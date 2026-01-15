@@ -13,6 +13,7 @@ import IconLockDots from "../../components/IconLockDots";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Loading from "../../components/loading";
 import "./login.style.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -32,6 +33,7 @@ const Login = () => {
   const { toastify } = useToastify();
   const { mutateAsync: userLogin } = useUserLogin();
   const [isPending, setIsPending] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -46,19 +48,28 @@ const Login = () => {
     setIsPending(true);
     try {
       const res = (await userLogin(data)) as TUserSignInResponse;
+      console.log(res);
 
-      if (res?.access_token) {
+      if (res && res.access_token) {
         setUserData(res);
-        toastify({ message: t("login.loginSuccess"), type: "success" });
+        toastify({
+          message: "Siz muvaffaqiyatli tizimga kirdingiz",
+          type: "success",
+        });
+        navigate("/", { replace: true });
         reset();
       } else {
         toastify({
-          message: t("login.loginError"),
+          message:
+            "Tizimga kirishda xatolik yuz berdi. Iltimos, ma'lumotlarni tekshiring va qayta urinib ko'ring.",
           type: "error",
         });
       }
     } catch {
-      toastify({ message: t("general.serverErr"), type: "error" });
+      toastify({
+        message: t("general.serverErr"),
+        type: "error",
+      });
     } finally {
       setIsPending(false);
     }
